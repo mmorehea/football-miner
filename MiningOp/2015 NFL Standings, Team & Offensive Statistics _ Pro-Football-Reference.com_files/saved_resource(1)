@@ -1,0 +1,18 @@
+
+var ftGUID_1187494="280239779C4CE6";
+var ftConfID_1187494="2778891";
+var ftParams_1187494="ftx=&fty=&ftadz=&ftscw=&ft_custom=[7833487603348600110]&ft_section=[7833487603348600110]&ftOBA=1&ft_referrer=http%3A%2F%2Fwww.pro-football-reference.com%2Fyears%2F2015%2F&cachebuster=501018.99076253176";
+var ftKeyword_1187494="";
+var ftCustom_1187494="[7833487603348600110]";
+var ftSection_1187494="[7833487603348600110]";
+var ftSegment_1187494="g5m,hks,hksa71822d75bb54a629364201a696a2dd1,fe4,idv,ibb,f6t";
+var ftSegmentList_1187494=[{s:'g5m'},{s:'hks',t:28780000},{m:'hks_v',s:'hksa71822d75bb54a629364201a696a2dd1'},{s:'fe4'},{s:'idv'},{s:'ibb'},{s:'f6t'}];
+var ftRuleMatch_1187494="0";
+var ftTimestamp_1187494="1449858116";
+var ftImp1187494 = {};
+ftImp1187494.privacy = "x";
+ftImp1187494.guidAge = "99";
+ftImp1187494.impID = "2901CE0C0C78B4";
+
+document.write('<scr'+'ipt src="https://secure.flashtalking.com/xre/118/1187494/1188288/js/j-1187494-1188288.js" id="ftscript_m1187494" name="ftscript_m1187494"></scr'+'ipt>');
+                    

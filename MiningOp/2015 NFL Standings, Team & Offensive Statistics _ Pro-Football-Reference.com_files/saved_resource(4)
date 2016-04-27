@@ -1,0 +1,18 @@
+
+var ftGUID_1187411="280239779C4CE6";
+var ftConfID_1187411="2778894";
+var ftParams_1187411="ftx=&fty=&ftadz=&ftscw=&ft_custom=&ft_section=&ftOBA=1&ft_referrer=https%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fads%3Fclient%3Dca-pub-5319453360923253%26format%3D970x90%26output%3Dhtml%26h%3D90%26slotname%3D5975682851%26adk%3D4035557100%26w%3D970%26lmt%3D1449858104%26loeid%3D19188001%26flash%3D17.0.0%26url%3Dhttp%253A%252F%252Fwww.pro-football-reference.com%252Fyears%252F2015%252F%26wgl%3D1%26dt%3D1449858104359%26bpp%3D13%26bdt%3D930%26fdt%3D15%26idt%3D63%26shv%3Dr20151208%26cbv%3Dr20151208%26saldr%3Daa%26correlator%3D2230429589505%26frm%3D20%26ga_vid%3D1469121991.1449611072%26ga_sid%3D1449858104%26ga_hid%3D1851320255%26ga_fc%3D0%26pv%3D2%26u_tz%3D-300%26u_his%3D6%26u_java%3D0%26u_h%3D1080%26u_w%3D1920%26u_ah%3D1062%26u_aw%3D1876%26u_cd%3D24%26u_nplug%3D4%26u_nmime%3D5%26dff%3Dverdana%26dfs%3D14%26adx%3D446%26ady%3D6968%26biw%3D1861%26bih%3D958%26eid%3D575144605%26oid%3D3%26ref%3Dhttp%253A%252F%252Fwww.pro-football-reference.com%252Fyears%252F2015%252Fopp.htm%26rx%3D0%26eae%3D0%26fc%3D80%26pc%3D1%26brdim%3D44%252C18%252C44%252C18%252C1876%252C&cachebuster=407377.7834419161";
+var ftKeyword_1187411="";
+var ftCustom_1187411="";
+var ftSection_1187411="";
+var ftSegment_1187411="g5m,hks,hksa71822d75bb54a629364201a696a2dd1,fe4,idv,ibb,f6t";
+var ftSegmentList_1187411=[{s:'g5m'},{s:'hks',t:28780000},{m:'hks_v',s:'hksa71822d75bb54a629364201a696a2dd1'},{s:'fe4'},{s:'idv'},{s:'ibb'},{s:'f6t'}];
+var ftRuleMatch_1187411="0";
+var ftTimestamp_1187411="1449858117";
+var ftImp1187411 = {};
+ftImp1187411.privacy = "x";
+ftImp1187411.guidAge = "99";
+ftImp1187411.impID = "29010914E7D820";
+
+document.write('<scr'+'ipt src="https://secure.flashtalking.com/xre/118/1187411/1188296/js/j-1187411-1188296.js" id="ftscript_m1187411" name="ftscript_m1187411"></scr'+'ipt>');
+                    

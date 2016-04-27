@@ -1,0 +1,290 @@
+from bs4 import BeautifulSoup
+import urllib
+import code
+import string
+import sys
+import urllib2
+import numpy as np
+import cPickle as pickle
+import os
+import csv
+import html2text
+import nltk
+
+
+def setSplitter(arr):
+	a1 = arr[::2]
+	a2 = arr[1::2]
+	
+	return a1, at
+
+for year in range(2015, 2016):
+	sets = []
+	year = str(year)
+	print year
+
+	html = urllib2.urlopen('http://www.pro-football-reference.com/years/' +year +'/')
+
+	soup = BeautifulSoup(html)
+	
+	s = soup.find_all('tbody')
+	dd = []
+	for each in s:
+		xx =each.find_all('tr')
+		for ee in xx:
+			w = ee.text.encode('utf-8').split('\n')
+			#code.interact(local=locals())
+			dd.append(w)
+			
+	we = []
+	for xx in dd:
+		we.append(len(xx))
+	unique_list = [e for i, e in enumerate(we) if we.index(e) == i]
+	for xx in range(len(unique_list)):
+		ss = np.asarray([x for x in dd if len(x) == unique_list[xx]])
+		if xx == 0:
+			week = ss[:,3]
+			week = np.where(week == '')
+			ss = np.delete(ss, week,0)
+			ss[:,0] = year
+			ss = ss[ss[:,1].argsort()]
+			sets.append(ss)
+		else:
+			ss = ss[:-1,:]
+			ss = ss[ss[:,2].argsort()]
+			ss = ss[:,1:]	
+			sets.append(ss)
+	
+	sizeList = []
+	for xx in sets:
+		xset, yset = xx.shape
+		sizeList.append(xset)
+	
+	getThisLeng = max(set(sizeList), key=sizeList.count)
+	
+	indices = [i for i, x in enumerate(sizeList) if x == getThisLeng]
+	
+	superSet = np.empty(getThisLeng)
+	superSet.fill(year)
+	for each in indices:
+		superSet = np.c_[superSet, sets[each]]
+
+			
+	#code.interact(local=locals())		
+	#top1 = np.asarray(['', 'Tm', 'W',	'L',	'T',	'W-L%',	'PF','PA','PD',	'MoV',	'SoS',	'SRS',	'OSRS',	'DSRS', ''])
+	
+	
+	#week = set1[:,3]
+	#week = np.where(week == '')
+	#set1 = np.delete(set1, week,0)
+	#set1[:,0] = year
+	
+	#set1 = set1[set1[:,1].argsort()]
+	##set1 = np.vstack((top1,set1))
+	
+	#top2 = 'Rk	Tm	G	PF	Yds	Ply	Y/P	TO	FL	1stD	Cmp	Att	Yds	TD	Int	NY/A	1stD	Att	Yds	TD	Y/A	1stD	Pen	Yds	1stPy	Sc%	TO%	EXP'
+	#top2 = top2.split()
+	#top2.insert(0,'')
+	#top2.append('')
+	##code.interact(local=locals())
+	#set2 = set2[:-1,:]
+	#set2 = set2[set2[:,2].argsort()]
+	##set2 = np.vstack((top2,set2))
+	#set2 = set2[:,1:]		
+	
+	
+	#top3 = 'Rk	Tm	G	Cmp	Att	Cmp%	Yds	TD	TD%	Int	Int%	Lng	Y/A	AY/A	Y/C	Y/G	Rate	QBR	Sk	Yds	NY/A	ANY/A	Sk%	4QC	GWD	EXP'
+	#top3 = top3.split()
+	#top3.insert(0,'')
+	#top3.append('')
+	#set3 = set3[:-1,:]
+	#set3 = set3[set3[:,2].argsort()]
+	##set3 = np.vstack((top3,set3))
+	#set3 = set3[:,1:]	
+	
+	#top4 = 'Rk	Tm	G	Att	Yds	TD	Lng	Y/A	Y/G	Fmb	EXP'
+	#top4 = top4.split()
+	#top4.insert(0,'')
+	#top4.append('')
+	#set4 = set4[:-1,:]
+	#set4 = set4[set4[:,2].argsort()]
+	##set4 = np.vstack((top4,set4))
+	#set4 = set4[:,1:]		
+	
+	#top5 = 'Rk	Tm	G	Ret	Yds	TD	Lng	Y/R	Rt	Yds	TD	Lng	Y/Rt	APYd'
+	#top5 = top5.split()
+	#top5.insert(0,'')
+	#top5.append('')
+	#set5 = set5[:-1,:]
+	#set5 = set5[set5[:,2].argsort()]
+	##set5 = np.vstack((top5,set5))
+	#set5 = set5[:,1:]		
+	
+	#top6 = 'Rk	Tm	G	FGA	FGM	FGA	FGM	FGA	FGM	FGA	FGM	FGA	FGM	FGA	FGM	FG%	XPA	XPM	XP%	Pnt	Yds	Lng	Blck	Y/P'
+	#top6 = top6.split()
+	#top6.insert(0,'')
+	#top6.append('')
+	#set6 = set6[:-1,:]
+	#set6 = set6[set6[:,2].argsort()]
+	##set6 = np.vstack((top6,set6))
+	#set6 = set6[:,1:]	
+	
+	#top7 = 'Rk	Tm	G	RshTD	RecTD	PRTD	KRTD	FblTD	IntTD	OthTD	AllTD	2PM	2PA	XPM	XPA	FGM	FGA	Sfty	Pts	Pts/G'
+	#top7 = top7.split()
+	#top7.insert(0,'')
+	#top7.append('')
+	#set7 = set7[:-1,:]
+	#set7 = set7[set7[:,2].argsort()]
+	
+	##set7 = np.vstack((top7,set7))
+	#set7 = set7[:,1:]	
+	#if len(unique_list) == 9:
+		#top8 = 'Rk	Tm	G	#Dr	Plays	Sc%	TO%	Plays	Yds	Start	Time	Pts'
+		#top8 = top8.split()
+		#top8.insert(0,'')
+		#top8.append('')
+		#top8 = np.asarray(top8)
+		#set8 = set8[set8[:,2].argsort()]
+		##set8 = np.vstack((top8,set8))
+		#set8 = set8[:,1:]	
+	
+		#superSet1 = np.c_[set1, set2, set3, set4, set5, set6, set7, set8]
+	#else:
+		
+		##code.interact(local=locals())
+		#superSet1 = np.c_[set1, set2, set3, set4, set5, set6, set7]
+	
+		
+	
+
+	html = urllib2.urlopen('http://www.pro-football-reference.com/years/' + year + '/opp.htm')
+
+	soup = BeautifulSoup(html)
+	sets = []
+	s = soup.find_all('tbody')
+	dd = []
+	for each in s:
+		xx =each.find_all('tr')
+		for ee in xx:
+			w = ee.text.encode('utf-8').split('\n')
+			#code.interact(local=locals())
+			dd.append(w)
+	#code.interact(local=locals())		
+	we = []
+	for xx in dd:
+		we.append(len(xx))
+	unique_list = [e for i, e in enumerate(we) if we.index(e) == i]
+	for xx in range(len(unique_list)):
+		ss = np.asarray([x for x in dd if len(x) == unique_list[xx]])
+		if xx == 0:
+			week = ss[:,3]
+			week = np.where(week == '')
+			ss = np.delete(ss, week,0)
+			ss[:,0] = year
+			ss = ss[ss[:,2].argsort()]
+			sets.append(ss)
+		else:
+			ss = ss[:-1,:]
+			ss = ss[ss[:,2].argsort()]
+			ss = ss[:,1:]	
+			sets.append(ss)
+	#code.interact(local=locals())
+	sizeList = []
+	for xx in sets:
+		xset, yset = xx.shape
+		sizeList.append(xset)
+
+	getThisLeng = max(set(sizeList), key=sizeList.count)
+	
+	indices = [i for i, x in enumerate(sizeList) if x == getThisLeng]
+	
+	superSet1 = np.empty(getThisLeng)
+	superSet1.fill(year)
+	for each in indices:
+		superSet1 = np.c_[superSet1, sets[each]]		
+		
+		
+	#code.interact(local=locals())
+	SS = np.c_[superSet, superSet1]
+	print SS.shape
+	with open(str(year)+'AllStats2015.csv', 'w') as ff:
+			csv.writer(ff).writerows(SS)
+	
+	#set1 = np.asarray([x for x in dd if len(x) == unique_list[0]])
+	#set2 = np.asarray([x for x in dd if len(x) == unique_list[2]])
+	#set3 = np.asarray([x for x in dd if len(x) == unique_list[3]])
+	#set4 = np.asarray([x for x in dd if len(x) == unique_list[4]])
+	#set5 = np.asarray([x for x in dd if len(x) == unique_list[5]])
+	##set6 = np.asarray([x for x in dd if len(x) == unique_list[6]])
+	##set7 = np.asarray([x for x in dd if len(x) == unique_list[7]])
+	
+	#top1 = 'Rk	Tm	G	PF	Yds	Ply	Y/P	TO	FR	1stD	Cmp	Att	Yds	TD	Int	NY/A	1stD	Att	Yds	TD	Y/A	1stD	Pen	Yds	1stPy	Sc%	TO%	EXP'
+	#top1 = top1.split()
+	#top1.insert(0,'')
+	#top1.append('')
+	#set1 = set1[:-1,:]
+	#set1 = set1[set1[:,1].argsort()]
+	##set1 = np.vstack((top1,set1))
+	#set1[:,0] = year
+	##code.interact(local=locals())
+	#top2 = 'Rk	Tm	G	Cmp	Att	Cmp%	Yds	TD	TD%	Int	Int%	Y/A	AY/A	Y/C	Y/G	Rate	Sk	Yds	NY/A	ANY/A	Sk%	EXP'
+	#top2 = top2.split()
+	#top2.insert(0,'')
+	#top2.append('')
+	#set2 = set2[:-1,:]
+	#set2 = set2[set2[:,2].argsort()]
+	##set2 = np.vstack((top2,set2))
+	#set2 = set2[:,1:]		
+	
+	
+	#top3 = 'Rk	Tm	G	Att	Yds	TD	Y/A	Y/G	Fmb	EXP'
+	#top3 = top3.split()
+	#top3.insert(0,'')
+	#top3.append('')
+	#set3 = set3[:-1,:]
+	#set3 = set3[set3[:,2].argsort()]
+	##set3 = np.vstack((top3,set3))
+	#set3 = set3[:,1:]	
+	
+	#top4 = 'Rk	Tm	G	Ret	Yds	TD	Y/R	Rt	Yds	TD	Y/Rt	APYd'
+	#top4 = top4.split()
+	#top4.insert(0,'')
+	#top4.append('')
+	#set4 = set4[:-1,:]
+	#set4 = set4[set4[:,2].argsort()]
+	##set4 = np.vstack((top4,set4))
+	#set4 = set4[:,1:]		
+	
+	#top5 = 'Rk	Tm	G	FGA	FGM	FGA	FGM	FGA	FGM	FGA	FGM	FGA	FGM	FGA	FGM	FG%	XPA	XPM	XP%	Pnt	Yds	Blck	Y/P'
+	#top5 = top5.split()
+	#top5.insert(0,'')
+	#top5.append('')
+	#set5 = set5[:-1,:]
+	#set5 = set5[set5[:,2].argsort()]
+	##set5 = np.vstack((top5,set5))
+	#set5 = set5[:,1:]		
+	
+	##top6 = 'Rk	Tm	G	RshTD	RecTD	PRTD	KRTD	FblTD	IntTD	OthTD	AllTD	2PM	2PA	XPM	XPA	FGM	FGA	Sfty	Pts	Pts/G'
+	##top6 = top6.split()
+	##top6.insert(0,'')
+	##top6.append('')
+	##set6 = set6[:-1,:]
+	##set6 = set6[set6[:,2].argsort()]
+	###set6 = np.vstack((top6,set6))
+	##set6 = set6[:,1:]	
+	
+	##top7 = 'Rk	Tm	G	#Dr	Plays	Sc%	TO%	Plays	Yds	Start	Time	Pts'
+	##top7 = top7.split()
+	##top7.insert(0,'')
+	##top7.append('')
+	##set7 = set7[set7[:,2].argsort()]
+	###set7 = np.vstack((top7,set7))
+	##set7 = set7[:,1:]	
+	
+	
+	#code.interact(local=locals())
+	#superSet2 = np.c_[set1, set2, set3, set4, set5]
+	
+	
+	
+	
